@@ -183,7 +183,22 @@ lorem ipsum
 	)
 ```
 #### SQL Expression:
-lorem ipsum
+	CASE
+	    WHEN (SL.programActual LIKE '%No Package%' AND PL.date150PackageRip != '') THEN 'Shipping'
+	    WHEN PL.date170Packed != '' THEN 'Shipping'
+	    WHEN PL.date165cPkgPrinted != '' THEN 'Packing'
+	    WHEN PL.date150bRipQC != '' THEN 'Printing'
+	    WHEN PL.date150PackageRip != '' THEN 'Post Rip QC'
+	    WHEN PL.date070QC != '' THEN 'Ripping'
+	    WHEN (PL.date140GreenScreen != '' AND PL.date030Color != '') THEN 'QC'
+	    WHEN (SL.shootNotes LIKE '%Green%' AND PL.date030Color != '') THEN 'Green Screen'
+	    WHEN PL.date030Color != '' THEN 'QC'
+	    WHEN PL.date060Cropping != '' THEN 'Color'
+	    WHEN PL.date040DataEntry != '' THEN 'Cropping'
+	    WHEN PL.date020Upload != '' THEN 'Data'
+	    WHEN PL.date010bIn != '' THEN 'Upload'
+	    WHEN PL.date010In != '' THEN 'Receiving'
+	END AS 'currentFacultyStage'
 
 ***
 
