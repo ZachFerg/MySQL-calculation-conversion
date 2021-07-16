@@ -2,8 +2,8 @@
 We'll be tracking filemaker calculations and how to convert them for MySQL
 
 # `currentAltStage`
-- [ ] Filemaker calculation
-- [ ] Fields Used
+- [x] Filemaker calculation
+- [x] Fields Used
 - [ ] MySQL Statement
 ### Fields Used for `currentAltStage`:
 |   production_log   | production_log (cont.) |
@@ -44,14 +44,14 @@ lorem ipsum
 ***
 
 # `currentCCGStage`
-- [ ] Filemaker calculation
+- [x] Filemaker calculation
 - [ ] Fields Used
 - [ ] MySQL Statement
 ### Fields Used for `currentCCGStage`
 |   production_log   | production_log (cont.) |
 |:------------------:|:---------------------:|
 |       |        |
-#### `currentAltStage` FileMaker calculation:
+#### `currentCCGStage` FileMaker calculation:
 ```SQL
 	Case ( 
 	Shoot_Log::programActual="Service Prints" and Shoot_Log||PRODUCTION_initialrun::date170Packed≠"";"Shipping";
@@ -163,16 +163,20 @@ lorem ipsum
 	"Not In"
 	)
 ```
-#### SQL Expression:
+#### `currentCCGStage` SQL Expression:
 lorem ipsum
 
 ***
 
-# currentFacultyStage
-- [ ] Filemaker calculation
-- [ ] Fields Used
+# `currentFacultyStage`
+- [x] Filemaker calculation
+- [x] Fields Used
 - [ ] MySQL Statement
-- 
+
+## Fields Used:
+x
+
+#### `currentFacultyStage` FileMaker calculation:
 ```SQL	
 	Case ( 
 	PatternCount ( Shoot_Log::programActual;"No Package" ) and Shoot_Log||PRODUCTION_initialrun::date150PackageRip≠"";"Shipping";
@@ -192,7 +196,7 @@ lorem ipsum
 	"Not In"
 	)
 ```
-#### SQL Expression:
+#### `currentFacultyStage` SQL Expression:
 	CASE
 	    WHEN (SL.programActual LIKE '%No Package%' AND PL.date150PackageRip != '') THEN 'Shipping'
 	    WHEN PL.date170Packed != '' THEN 'Shipping'
@@ -212,11 +216,12 @@ lorem ipsum
 
 ***
 
-# currentPrepayStage
-- [ ] Filemaker calculation
-- [ ] Fields Used
+# `currentPrepayStage`
+- [x] Filemaker calculation
+- [x] Fields Used
 - [ ] MySQL Statement
-### Fields Used:
+
+### `currentPrepayStage` Fields Used:
 |   production_log   | production_log (cont) | program |
 |:------------------:|:---------------------:|---------|
 | date170Packed      | date060Cropping       | bgko    |
@@ -230,7 +235,7 @@ lorem ipsum
 | date070QC          |                       |         |
 | date601Rescan      |                       |         |
 
-
+## `currentPrepayStage` Filemaker calculation:
 ```SQL
 	Case ( 
 	Shoot_Log||PRODUCTION_initialrun::date170Packed≠"";"Shipping";
@@ -252,15 +257,21 @@ lorem ipsum
 	"Not In"
 	)
 ```
-#### SQL Expression:
+#### `currentPrepayStage` SQL Expression:
 lorem ipsum
 
 ***
 
-# currentProofStage
-- [ ] Filemaker calculation
-- [ ] Fields Used
-- [ ] MySQL Statement
+# `currentProofStage`
+- [x] Filemaker calculation
+- [x] Fields Used
+- [x] MySQL Statement
+
+### `currentProofStage` Fields Used:
+x
+
+### `currentProofStage` Filemaker calculation:
+
 ```SQL
 	Case ( 
 	Shoot_Log||PRODUCTION_initialrun::date170Packed≠"";"Shipping";
@@ -289,9 +300,9 @@ lorem ipsum
 	"Not In"
 	)
 ```
-#### SQL Expression:
+#### `currentProofStage` SQL Expression:
 ```SQL
-CASE
+        CASE
             WHEN PL.date170Packed IS NOT NULL THEN 'Shipping'
             WHEN PL.date165cPkgPrinted IS NOT NULL THEN 'Packing'
             WHEN PL.date150bRipQC IS NOT NULL THEN 'Printing'
@@ -340,12 +351,12 @@ CASE
 
 ***
 
-# currentSeniorStage
-- [ ] Filemaker calculation
-- [ ] Fields Used
+# `currentSeniorStage`
+- [x] Filemaker calculation
+- [x] Fields Used
 - [ ] MySQL Statement
 
-### Fields Used:
+### `currentSeniorStage` Fields Used:
 | production_log         | production_log (cont) | contract      |
 |------------------------|-----------------------|---------------|
 | date170Packed          | date010bIn            | seniorPoseHow |
@@ -358,6 +369,8 @@ CASE
 | date030Color           |                       |               |
 | date040DataEntry       |                       |               |
 | date020Upload          |                       |               |
+
+#### `currentSeniorStage` Filemaker Calculation
 ```SQL
 	Case ( 
 	Shoot_Log||PRODUCTION_initialrun::date170Packed≠"";"Shipping";
@@ -383,14 +396,18 @@ CASE
 	"Not In"
 	)
 ```
+
+#### `currentSeniorStage` SQL Expression:
+x
+
 ***
 
-# currentSpecStage
-- [ ] Filemaker calculation
-- [ ] Fields Used
+# `currentSpecStage`
+- [x] Filemaker calculation
+- [x] Fields Used
 - [ ] MySQL Statement
 
-### Fields Used:
+### `currentSpecStage` Fields Used:
 | production_log     |
 |--------------------|
 | date170Packed      |
@@ -403,7 +420,7 @@ CASE
 | date020Upload      |
 | date010bIn         |
 | date010In          |
-### Filemaker:
+### `currentSpecStage` Filemaker calculation:
 ```SQL
 	Case ( 
 	Shoot_Log||PRODUCTION_initialrun::date170Packed≠"";"Shipping" ;
@@ -419,16 +436,20 @@ CASE
 	"Not In"
 	)
 ```
-#### SQL Expression:
+#### `currentSpecStage` SQL Expression:
 lorem ipsum
 
 ***
 
-# currentSportsStage
-- [ ] Filemaker calculation
+# `currentSportsStage`
+- [x] Filemaker calculation
 - [ ] Fields Used
 - [ ] MySQL Statement
 
+## `currentSportsStage` Fields Used:
+x
+
+#### `currentSportsStage` Filemaker calculation:
 ```SQL
 	Case ( 
 	Shoot_Log::programActual="School Sports 50 Proof" and Shoot_Log||PRODUCTION_initialrun::date170Packed≠"";"Shipping";
@@ -479,16 +500,20 @@ lorem ipsum
 	"Not In"
 	)
 ```
-#### SQL Expression:
+#### `currentSportsStage` SQL Expression:
 lorem ipsum
 
 ***
 
-## currentStageFinal
-- [ ] Filemaker calculation
-- [ ] Fields Used
+## `currentStageFinal`
+- [x] Filemaker calculation
+- [x] Fields Used
 - [ ] MySQL Statement
 
+### `currentStageFinal` Fields Used:
+x
+
+### `currentStageFinal` Fields Used:
 ```SQL
 	Case(
 	Shoot_Log::notTrackable = "Yes" ; "Not Trackable" ;
@@ -508,23 +533,23 @@ lorem ipsum
 	currentAltStage
 	)
 ```
-#### SQL Expression:
+#### `currentStageFinal` SQL Expression:
 lorem ipsum
 
 ***
 
-# currentStageKits
-- [ ] Filemaker calculation
-- [ ] Fields Used
+# `currentStageKits`
+- [x] Filemaker calculation
+- [x] Fields Used
 - [ ] MySQL Statement
 
-### Fields Used:
+### `currentStageKits` Fields Used:
 | shoot_log          | 
 |--------------------|
 | kitBuiltDate       |
 | kitPrintedDate     |
 | SchedulingPrepDate |
-### Filemaker:
+### `currentStageKits` Filemaker calculation:
 ```SQL
 	Case (
 	kitBuiltDate ≠ "" ; "Shipping" ;
@@ -533,17 +558,17 @@ lorem ipsum
 	"Prepping"
 	)
 ```
-#### SQL Expression:
+#### `currentStageKits` SQL Expression:
 lorem ipsum
 
 ***
 
-# currentSvcOnlyStage
-- [ ] Filemaker calculation
-- [ ] Fields Used
+# `currentSvcOnlyStage`
+- [x] Filemaker calculation
+- [x] Fields Used
 - [ ] MySQL Statement
 
-### Fields Used:
+### `currentSvcOnlyStage` Fields Used:
 | production_log     | production_log (cont) |
 |--------------------|-----------------------|
 | date170Packed      | date010In             |
@@ -556,7 +581,7 @@ lorem ipsum
 | date040DataEntry   |                       |
 | date020Upload      |                       |
 | date010bIn         |                       |
-### Filemaker:
+### `currentSvcOnlyStage` Filemaker calculation:
 ```SQL
 	Case ( 
 	Shoot_Log||PRODUCTION_initialrun::date170Packed≠"";"Shipping";
@@ -573,7 +598,7 @@ lorem ipsum
 	"Not In"
 	)
 ```
-#### SQL Expression:
+#### `currentSvcOnlyStage` SQL Expression:
 lorem ipsum
 
 ***
