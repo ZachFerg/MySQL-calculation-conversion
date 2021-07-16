@@ -45,12 +45,21 @@ lorem ipsum
 
 # `currentCCGStage`
 - [x] Filemaker calculation
-- [ ] Fields Used
+- [x] Fields Used
 - [ ] MySQL Statement
 ### Fields Used for `currentCCGStage`
-|   production_log   | production_log (cont.) |
-|:------------------:|:---------------------:|
-|       |        |
+| shoot_log     | production_log     | production_log (cont)   | production_log (cont) | 
+|---------------|--------------------|-------------------------|-----------------------|
+| programActual | date170Packed      | date010In               | date050BestOf         |
+| CCG_HowShot   | date165cPkgPrinted | date120OnlineOrders     | date130fOverlays      |
+| nameOnShoot   | date150bRipQC      | date110OrderEntry       | date001CheckIn        |
+| Names_W_Job   | date150PackageRip  | date100ProofIn          | date770QCRecheck      |
+|               | date070QC          | date090ProofShip        | date330InDesign       |
+|               | date060Cropping    | date170PackedProof      | date320DataProc       |
+|               | date030Color       | date165aProofPrinting   | date310NamesIn        |
+|               | date040DataEntry   | date150bPostProofRipQC  |                       |
+|               | date020Upload      | date070ProofRip         |                       |
+|               | date010bIn         | date130ZRetouchingTotal |                       |
 #### `currentCCGStage` FileMaker calculation:
 ```SQL
 	Case ( 
@@ -197,7 +206,8 @@ x
 	)
 ```
 #### `currentFacultyStage` SQL Expression:
-	CASE
+```SQL
+	SELECT CASE
 	    WHEN (SL.programActual LIKE '%No Package%' AND PL.date150PackageRip != '') THEN 'Shipping'
 	    WHEN PL.date170Packed != '' THEN 'Shipping'
 	    WHEN PL.date165cPkgPrinted != '' THEN 'Packing'
@@ -213,6 +223,7 @@ x
 	    WHEN PL.date010bIn != '' THEN 'Upload'
 	    WHEN PL.date010In != '' THEN 'Receiving'
 	END AS 'currentFacultyStage'
+```
 
 ***
 
