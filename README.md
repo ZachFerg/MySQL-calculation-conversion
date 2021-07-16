@@ -274,7 +274,53 @@ lorem ipsum
 	)
 ```
 #### SQL Expression:
-lorem ipsum
+```SQL
+CASE
+            WHEN PL.date170Packed IS NOT NULL THEN 'Shipping'
+            WHEN PL.date165cPkgPrinted IS NOT NULL THEN 'Packing'
+            WHEN PL.date150bRipQC IS NOT NULL THEN 'Printing'
+            WHEN PL.date150PackageRip IS NOT NULL THEN 'Post Rip QC'
+            WHEN PL.date140GreenScreen IS NOT NULL THEN 'Ripping'
+            WHEN
+                (PL.date130Retouching IS NOT NULL
+                    AND PR.bgko = 'Yes')
+            THEN
+                'BG-KO'
+            WHEN PL.date130Retouching IS NOT NULL THEN 'Ripping'
+            WHEN PL.date110OrderEntry IS NOT NULL THEN 'Retouch'
+            WHEN
+                (PL.date100ProofIn IS NOT NULL
+                    AND SL.shootNotes = 'No Orders'
+                    AND SL.moneyInPlantDate01 IS NULL)
+            THEN
+                'Order Entry'
+            WHEN PL.date601Rescan IS NOT NULL THEN 'Order Entry'
+            WHEN
+                (PL.date100ProofIn
+                    AND SL.shootNotes != 'No Orders'
+                    AND SL.moneyInPlantDate01 IS NOT NULL)
+            THEN
+                'Scanning'
+            WHEN
+                (PL.date100ProofIn
+                    AND SL.shootNotes != 'No Orders'
+                    AND SL.moneyInPlantDate01 IS NULL)
+            THEN
+                'Waiting On Orders'
+            WHEN PL.date090ProofShip IS NOT NULL THEN 'Proof Return'
+            WHEN PL.date170PackedProof IS NOT NULL THEN 'Shipping'
+            WHEN PL.date165aProofPrinting IS NOT NULL THEN 'Packing'
+            WHEN PL.date150bPostProofRipQC IS NOT NULL THEN 'Printing'
+            WHEN PL.date070ProofRip IS NOT NULL THEN 'Post Rip QC'
+            WHEN PL.date030Color IS NOT NULL THEN 'Ripping'
+            WHEN PL.date060Cropping IS NOT NULL THEN 'Color'
+            WHEN PL.date040DataEntry IS NOT NULL THEN 'Cropping'
+            WHEN PL.date020Upload IS NOT NULL THEN 'Data'
+            WHEN PL.date010bIn IS NOT NULL THEN 'Upload'
+            WHEN PL.date010In IS NOT NULL THEN 'Receiving'
+            ELSE 'Not In'
+        END AS currentProofStage
+```
 
 ***
 
