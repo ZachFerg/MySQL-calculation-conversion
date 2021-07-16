@@ -207,22 +207,35 @@ x
 ```
 #### `currentFacultyStage` SQL Expression:
 ```SQL
-	SELECT CASE
-	    WHEN (SL.programActual LIKE '%No Package%' AND PL.date150PackageRip != '') THEN 'Shipping'
-	    WHEN PL.date170Packed != '' THEN 'Shipping'
-	    WHEN PL.date165cPkgPrinted != '' THEN 'Packing'
-	    WHEN PL.date150bRipQC != '' THEN 'Printing'
-	    WHEN PL.date150PackageRip != '' THEN 'Post Rip QC'
-	    WHEN PL.date070QC != '' THEN 'Ripping'
-	    WHEN (PL.date140GreenScreen != '' AND PL.date030Color != '') THEN 'QC'
-	    WHEN (SL.shootNotes LIKE '%Green%' AND PL.date030Color != '') THEN 'Green Screen'
-	    WHEN PL.date030Color != '' THEN 'QC'
-	    WHEN PL.date060Cropping != '' THEN 'Color'
-	    WHEN PL.date040DataEntry != '' THEN 'Cropping'
-	    WHEN PL.date020Upload != '' THEN 'Data'
-	    WHEN PL.date010bIn != '' THEN 'Upload'
-	    WHEN PL.date010In != '' THEN 'Receiving'
-	END AS 'currentFacultyStage'
+	SELECT 
+    CASE
+        WHEN
+            (SL.programActual LIKE '%No Package%'
+                AND PL.date150PackageRip IS NOT NULL)
+        THEN
+            'Shipping'
+        WHEN PL.date170Packed IS NOT NULL THEN 'Shipping'
+        WHEN PL.date165cPkgPrinted IS NOT NULL THEN 'Packing'
+        WHEN PL.date150bRipQC IS NOT NULL THEN 'Printing'
+        WHEN PL.date150PackageRip IS NOT NULL THEN 'Post Rip QC'
+        WHEN PL.date070QC IS NOT NULL THEN 'Ripping'
+        WHEN
+            (PL.date140GreenScreen IS NOT NULL
+                AND PL.date030Color IS NOT NULL)
+        THEN
+            'QC'
+        WHEN
+            (SL.shootNotes LIKE '%Green%'
+                AND PL.date030Color IS NOT NULL)
+        THEN
+            'Green Screen'
+        WHEN PL.date030Color IS NOT NULL THEN 'QC'
+        WHEN PL.date060Cropping IS NOT NULL THEN 'Color'
+        WHEN PL.date040DataEntry IS NOT NULL THEN 'Cropping'
+        WHEN PL.date020Upload IS NOT NULL THEN 'Data'
+        WHEN PL.date010bIn IS NOT NULL THEN 'Upload'
+        WHEN PL.date010In IS NOT NULL THEN 'Receiving'
+    END AS 'currentFacultyStage '
 ```
 
 ***
