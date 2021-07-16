@@ -2,6 +2,9 @@
 We'll be tracking filemaker calculations and how to convert them for MySQL
 
 # `currentAltStage`
+- [ ] Filemaker calculation
+- [ ] Fields Used
+- [ ] MySQL Statement
 ### Fields Used for `currentAltStage`:
 |   production_log   | production_log (cont.) |
 |:------------------:|:---------------------:|
@@ -41,6 +44,9 @@ lorem ipsum
 ***
 
 # `currentCCGStage`
+- [ ] Filemaker calculation
+- [ ] Fields Used
+- [ ] MySQL Statement
 ### Fields Used for `currentCCGStage`
 |   production_log   | production_log (cont.) |
 |:------------------:|:---------------------:|
@@ -163,6 +169,10 @@ lorem ipsum
 ***
 
 # currentFacultyStage
+- [ ] Filemaker calculation
+- [ ] Fields Used
+- [ ] MySQL Statement
+- 
 ```SQL	
 	Case ( 
 	PatternCount ( Shoot_Log::programActual;"No Package" ) and Shoot_Log||PRODUCTION_initialrun::date150PackageRip≠"";"Shipping";
@@ -203,6 +213,9 @@ lorem ipsum
 ***
 
 # currentPrepayStage
+- [ ] Filemaker calculation
+- [ ] Fields Used
+- [ ] MySQL Statement
 ### Fields Used:
 |   production_log   | production_log (cont) | program |
 |:------------------:|:---------------------:|---------|
@@ -245,6 +258,9 @@ lorem ipsum
 ***
 
 # currentProofStage
+- [ ] Filemaker calculation
+- [ ] Fields Used
+- [ ] MySQL Statement
 ```SQL
 	Case ( 
 	Shoot_Log||PRODUCTION_initialrun::date170Packed≠"";"Shipping";
@@ -325,6 +341,10 @@ CASE
 ***
 
 # currentSeniorStage
+- [ ] Filemaker calculation
+- [ ] Fields Used
+- [ ] MySQL Statement
+
 ### Fields Used:
 | production_log         | production_log (cont) | contract      |
 |------------------------|-----------------------|---------------|
@@ -366,6 +386,10 @@ CASE
 ***
 
 # currentSpecStage
+- [ ] Filemaker calculation
+- [ ] Fields Used
+- [ ] MySQL Statement
+
 ### Fields Used:
 | production_log     |
 |--------------------|
@@ -401,6 +425,10 @@ lorem ipsum
 ***
 
 # currentSportsStage
+- [ ] Filemaker calculation
+- [ ] Fields Used
+- [ ] MySQL Statement
+
 ```SQL
 	Case ( 
 	Shoot_Log::programActual="School Sports 50 Proof" and Shoot_Log||PRODUCTION_initialrun::date170Packed≠"";"Shipping";
@@ -457,6 +485,10 @@ lorem ipsum
 ***
 
 ## currentStageFinal
+- [ ] Filemaker calculation
+- [ ] Fields Used
+- [ ] MySQL Statement
+
 ```SQL
 	Case(
 	Shoot_Log::notTrackable = "Yes" ; "Not Trackable" ;
@@ -482,6 +514,10 @@ lorem ipsum
 ***
 
 # currentStageKits
+- [ ] Filemaker calculation
+- [ ] Fields Used
+- [ ] MySQL Statement
+
 ### Fields Used:
 | shoot_log          | 
 |--------------------|
@@ -503,6 +539,10 @@ lorem ipsum
 ***
 
 # currentSvcOnlyStage
+- [ ] Filemaker calculation
+- [ ] Fields Used
+- [ ] MySQL Statement
+
 ### Fields Used:
 | production_log     | production_log (cont) |
 |--------------------|-----------------------|
