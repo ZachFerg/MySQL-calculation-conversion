@@ -39,7 +39,25 @@ We'll be tracking filemaker calculations and how to convert them for MySQL
     )
 ```
 #### `currentAltStage` SQL Expression:
-lorem ipsum
+```SQL
+	CASE
+        WHEN PL.date170Packed IS NOT NULL THEN 'Shipping'
+        WHEN PL.date165cPkgPrinted IS NOT NULL THEN 'Packing'
+        WHEN PL.date150bRipQC IS NOT NULL THEN 'Printing'
+        WHEN PL.date150PackageRip IS NOT NULL THEN 'Post Rip QC'
+		WHEN PL.date130Retouching IS NOT NULL THEN 'Ripping'
+		WHEN PL.date110OrderEntry IS NOT NULL THEN 'Retouch'
+        WHEN PL.date030Color IS NOT NULL AND PL.date601Rescan IS NOT NULL THEN 'Order Entry'
+		WHEN PL.date030Color IS NOT NULL THEN 'Retouch'
+		WHEN PL.date070QC IS NOT NULL THEN 'Color'
+        WHEN PL.date060Cropping IS NOT NULL THEN 'QC'
+        WHEN PL.date040DataEntry IS NOT NULL THEN 'Cropping'
+        WHEN PL.date020Upload IS NOT NULL THEN 'Data'
+        WHEN PL.date010bIn IS NOT NULL THEN 'Upload'
+        WHEN PL.date010In IS NOT NULL THEN 'Receiving'
+		ELSE 'Not In'
+    END AS 'currentAltStage '
+```
 
 ***
 
