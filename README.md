@@ -4,7 +4,7 @@ We'll be tracking filemaker calculations and how to convert them for MySQL
 # `currentAltStage`
 - [x] Filemaker calculation
 - [x] Fields Used
-- [ ] MySQL Statement
+- [x] MySQL Statement
 ### Fields Used for `currentAltStage`:
 |   production_log   | production_log (cont.) |
 |:------------------:|:---------------------:|
@@ -198,7 +198,7 @@ lorem ipsum
 # `currentFacultyStage`
 - [x] Filemaker calculation
 - [x] Fields Used
-- [ ] MySQL Statement
+- [x] MySQL Statement
 
 ## Fields Used:
 x
@@ -261,7 +261,7 @@ x
 # `currentPrepayStage`
 - [x] Filemaker calculation
 - [x] Fields Used
-- [ ] MySQL Statement
+- [x] MySQL Statement
 
 ### `currentPrepayStage` Fields Used:
 |   production_log   | production_log (cont) | program |
@@ -300,7 +300,27 @@ x
 	)
 ```
 #### `currentPrepayStage` SQL Expression:
-lorem ipsum
+```SQL
+	Case ( 
+	PL.date170Packed IS NOT NULL THEN 'Shipping'
+	PL.date165cPkgPrinted IS NOT NULL THEN 'Packing'
+	PL.date150bRipQC IS NOT NULL THEN 'Printing'
+	PL.date150PackageRip IS NOT NULL THEN 'Post Rip QC'
+	PL.date140GreenScreen IS NOT NULL THEN 'Ripping'
+	PL.date130Retouching IS NOT NULL AND PR.bgko = 'Yes' THEN 'BG-KO'
+	PL.date130Retouching IS NOT NULL THEN 'Ripping'
+	PL.date030Color IS NOT NULL THEN 'Retouch'
+	PL.date110OrderEntry IS NOT NULL THEN 'Color'
+	PL.date070QC IS NOT NULL AND PL.date601Rescan IS NOT NULL THEN 'Order Entry'
+	PL.date070QC IS NOT NULL THEN 'Scanning'
+	PL.date060Cropping IS NOT NULL THEN 'QC'
+	PL.date040DataEntry IS NOT NULL THEN 'Cropping'
+	PL.date020Upload IS NOT NULL THEN 'Data'
+	PL.date010bIn IS NOT NULL THEN 'Upload'
+	PL.date010In IS NOT NULL THEN 'Receiving'
+	ELSE 'Not In'
+	)
+```
 
 ***
 
