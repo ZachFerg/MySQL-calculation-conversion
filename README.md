@@ -416,7 +416,7 @@ x
 # `currentSeniorStage`
 - [x] Filemaker calculation
 - [x] Fields Used
-- [ ] MySQL Statement
+- [x] MySQL Statement
 
 ### `currentSeniorStage` Fields Used:
 | production_log         | production_log (cont) | contract      |
@@ -460,7 +460,63 @@ x
 ```
 
 #### `currentSeniorStage` SQL Expression:
-x
+```SQL
+CASE
+            WHEN PL.date170Packed IS NOT NULL THEN 'Shipping'
+            WHEN PL.date165cPkgPrinted IS NOT NULL THEN 'Packing'
+            WHEN PL.date150bPostProofRipQC IS NOT NULL THEN 'Printing'
+            WHEN PL.date070ProofRip IS NOT NULL THEN 'Post Rip QC'
+            WHEN PL.date070QC IS NOT NULL THEN 'Ripping'
+            WHEN PL.date200SrYb IS NOT NULL THEN 'QC'
+            WHEN
+                PL.date060Cropping IS NOT NULL
+                    AND CR.seniorPoseHow
+            THEN
+                'Onsite[/]Services'
+            WHEN
+                PL.date060Cropping IS NOT NULL
+                    AND CR.seniorPoseHow
+            THEN
+                'Best of\'s[/]Services'
+            WHEN
+                PL.date060Cropping IS NOT NULL
+                    AND CR.seniorPoseHow
+            THEN
+                'Onsite/Mugbook/Services'
+            WHEN
+                PL.date060Cropping IS NOT NULL
+                    AND CR.seniorPoseHow
+            THEN
+                'Onsite/PMC\'Services'
+            WHEN
+                PL.date060Cropping IS NOT NULL
+                    AND CR.seniorPoseHow
+            THEN
+                'Onsite/IQ\'Services'
+            WHEN
+                PL.date060Cropping IS NOT NULL
+                    AND CR.seniorPoseHow
+            THEN
+                'Best of\'s Mugbook[/]Services'
+            WHEN
+                PL.date060Cropping IS NOT NULL
+                    AND CR.seniorPoseHow
+            THEN
+                'Best of\'s PMC[/]Services'
+            WHEN
+                PL.date060Cropping IS NOT NULL
+                    AND CR.seniorPoseHow
+            THEN
+                'Best of\'s IQ[/]Services'
+            WHEN PL.date060Cropping IS NOT NULL THEN 'QC'
+            WHEN PL.date030Color IS NOT NULL THEN 'Cropping'
+            WHEN PL.date040DataEntry IS NOT NULL THEN 'Color'
+            WHEN PL.date020Upload IS NOT NULL THEN 'Data'
+            WHEN PL.date010bIn IS NOT NULL THEN 'Upload'
+            WHEN PL.date010In IS NOT NULL THEN 'Receiving'
+            ELSE 'Not In'
+        END AS currentSeniorStage
+```
 
 ***
 
