@@ -523,7 +523,7 @@ CASE
 # `currentSpecStage`
 - [x] Filemaker calculation
 - [x] Fields Used
-- [ ] MySQL Statement
+- [x] MySQL Statement
 
 ### `currentSpecStage` Fields Used:
 | production_log     |
@@ -555,7 +555,21 @@ CASE
 	)
 ```
 #### `currentSpecStage` SQL Expression:
-lorem ipsum
+```SQL
+	CASE
+            WHEN PL.date170Packed IS NOT NULL THEN 'Shipping'
+            WHEN PL.date165cPkgPrinted IS NOT NULL THEN 'Packing'
+            WHEN PL.date150bRipQC IS NOT NULL THEN 'Printing'
+            WHEN PL.date150PackageRip IS NOT NULL THEN 'Post Rip QC'
+            WHEN PL.date030Color IS NOT NULL THEN 'Ripping'
+            WHEN PL.date060Cropping IS NOT NULL THEN 'Color'
+            WHEN PL.date040DataEntry IS NOT NULL THEN 'Cropping'
+            WHEN PL.date020Upload IS NOT NULL THEN 'Data'
+            WHEN PL.date010bIn IS NOT NULL THEN 'Upload'
+            WHEN PL.date010In IS NOT NULL THEN 'Receiving'
+            ELSE 'Not In'
+        END AS currentSpecStage
+```
 
 ***
 
